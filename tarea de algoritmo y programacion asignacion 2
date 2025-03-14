@@ -1,0 +1,134 @@
+tarea: toufic abdul ci:31.443.745     fecha:13/3/25
+Ejercicio 1: Declara una variable entera x con valor 10 y un puntero p que almacene la dirección de x.
+
+#include <stdio.h>
+
+int main() {
+    int x;      
+    int *p;     
+
+    x = 10;    
+    p = &x;     
+
+    printf("El valor de x es: %d\n", x);
+    printf("La direccion de x es: %p\n", p);
+    printf("El valor al que apunta p es: %d\n", *p);
+
+    return 0;
+}
+
+Ejercicio 2: Dado el siguiente código, modifica el valor de y usando el puntero ptr. int principal() { int y = 5; int *ptr = &y; // Escribe aquí la línea que cambia el valor de ya 20 usando ptr return 0; }
+
+#include <stdio.h>
+
+int main() { 
+    int y = 5;       
+    int *ptr = &y;   
+
+    *ptr = 20;       
+
+    printf("El nuevo valor d y es: %d\n", y);
+
+    return 0;
+}
+
+Ejercicio 3: Usa aritmética de punteros para recorrer un arreglo y sumar sus elementos.
+
+#include <stdio.h>
+
+int main() {
+    int arreglo[] = {1, 2, 3, 4, 5}; 
+    int suma = 0;                   
+    int *ptr = arreglo;             
+    int longitud = sizeof(arreglo)  / sizeof(arreglo[0]);
+
+    for (int i = 0; i < longitud; i++) {
+        suma += *(ptr + i); 
+    }
+
+    printf("La suma de los elementos del arreglo es: %d\n", suma);
+
+    return 0;
+}
+
+Ejercicio 4: Si p es un puntero a float yp = 0x1000, ¿qué dirección representa p + 3? (Supón sizeof(float) = 4).
+
+si p es un puntero a float y apunta a la dirección de memoria 0x1000, necesitamos calcular la dirección que representa p + 3. Esto implica usar aritmética de punteros.
+
+
+Cada float ocupa 4 bytes (según el tamaño dado en el ejercicio).
+
+Al sumar 3 al puntero p, avanzamos 3 posiciones de float, lo cual equivale a avanzar 
+3x4:12 bytes en la memoria.
+
+Por lo tanto:
+direccion de p+3: 0x1000 +12:0x100c
+Resultado:
+La dirección representada por p + 3 es 0x100C.
+
+ejem en codigo para mostrar este ejercicio
+
+#include <stdio.h>
+
+int main() {
+    float *p = (float *)0x1000; 
+    float *pNuevo = p + 3;     
+
+    printf("La direccion inicial de p es: %p\n", p);
+    printf("La direccion de p + 3 es: %p\n", pNuevo);
+
+    return 0;
+}
+
+Ejercicio 5: Dado el arreglo int valores[] = {10, 20, 30, 40}, determina si las siguientes comparaciones son verdaderas o falsas:
+
+int *p1 = valores; int *p2 = valores + 3;
+
+// a) p1 == p2 // b) p1 < p2 // c) p1 >= (valores + 4)
+
+
+este seria el codigo del ejercicio
+
+#include <stdio.h>
+
+int main() {
+    int valores[] = {10, 20, 30, 40}; 
+    int *p1 = valores;     
+    int *p2 = valores + 3;  
+
+    printf("a) p1 == p2: %s\n", (p1 == p2) ? "Verdadero" : "Falso");
+    printf("b) p1 < p2: %s\n", (p1 < p2) ? "Verdadero" : "Falso");
+    printf("c) p1 >= (valores + 4): %s\n", (p1 >= (valores + 4)) ? "Verdadero" : "Falso");
+
+    return 0;
+}
+
+
+Comparación p1 == p2:
+
+p1 apunta a valores[0] (la primera posición del arreglo).
+
+p2 apunta a valores[3] (la cuarta posición del arreglo).
+
+Por lo tanto, Falso, ya que p1 y p2 no apuntan a la misma dirección.
+
+Comparación p1 < p2:
+
+En términos de direcciones de memoria, p1 apunta a una dirección más baja (valores[0]) y p2 a una más alta (valores[3]).
+
+Por lo tanto, Verdadero, ya que p1 está antes en memoria que p2.
+
+Comparación p1 >= (valores + 4):
+
+(valores + 4) apunta más allá del final del arreglo (posición fuera de rango).
+
+p1 apunta al inicio del arreglo, por lo que está en una dirección más baja que (valores + 4).
+
+Por lo tanto, Falso.
+
+Resultado Final:
+a) p1 == p2: Falso.
+
+b) p1 < p2: Verdadero.
+
+c) p1 >= (valores + 4): Falso.
